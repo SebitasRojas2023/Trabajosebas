@@ -1,5 +1,8 @@
-
-function Formulario() {
+import  {useState, useEffect} from "react"
+const Formularios = ()=> {
+  const {nombre, setNombre} = useState(' ');
+  setNombre('Trosky')
+  console.log(nombre);
   return (
     <div className='md:w-1/2 lg:w-2/5'>
       <h2 className='font-black text-3xl text-center'> Seguimiento a pacientes</h2>
@@ -14,8 +17,8 @@ function Formulario() {
       <form className='bg-white shadow-md rounded-lg py-10 px-5 mb-10'>
         <div className='mb-5'>
           <label htmlFor='mascota' className='block text-gray-700 uppercase font-bold'>Nombre de la Mascota</label>
-          <input  id='mascota' type="text" className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md' placeholder='Nombre de la Mascota'/>
-
+          <input  id='mascota' type="text" className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md' placeholder='Nombre de la Mascota'
+          value={nombre} onChange={(e)=>console.log(setNombre(e.target.value))} />
         </div>
 
       
@@ -24,7 +27,7 @@ function Formulario() {
         <div className='mb-5'>
           <label htmlFor='propietario' className='block text-gray-700 uppercase font-bold'>Propietario</label>
           <input  id='propietario' type="text" className='border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md' placeholder='Nombre del propietario'/>
-
+          uppercase font-bold "Nombre Mascotas"
         </div>
 
       
