@@ -1,5 +1,5 @@
 import Pacientes from "./Pacientes"
-function ListadoPacientes() {
+function ListadoPacientes( {pacientes} ) {
   return (
     <div className="md:w-1/2 lg:w-3/5 md:h-screen overflow-y-scroll">
       <h2 className="font-black text-3x1 text-center">Listado Pacientes</h2>
@@ -26,9 +26,13 @@ function ListadoPacientes() {
           SINTOMAS:{'  '} <span className="font-normal normal-case">Lorem 
           ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus, quam dolor ad atque minus ab omnis nihil odit consectetur. Blanditiis placeat quia assumenda voluptates, amet exercitationem reiciendis! Inventore libero voluptatibus, alias corporis praesentium, rem facilis, ad optio nulla quae molestias!</span>
           </p>
-          <Pacientes />
-          <Pacientes />
-          <Pacientes />
+          {pacientes.map((indice)=>
+           <Pacientes 
+             indice = {indice}
+           />
+          )}
+         
+          
        </div>
 
   )

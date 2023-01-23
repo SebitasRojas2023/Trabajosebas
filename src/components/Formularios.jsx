@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
+import Error from "./Error";
 
-
-const Formulario = () => {
+const Formulario = ( {pacientes, setPacientes} ) => {
   const [nombre, setNombre] = useState('');
   const [propietario, setPropietario] = useState('');
   const [email, setEmail] = useState('');
@@ -23,10 +23,28 @@ const Formulario = () => {
   }
 
   setError(false);
-  }
 
-  
-  
+
+  //objeto de pacientes - enviar al arreglo
+const objetoPacientes = {
+  nombre,
+  propietario,
+  email,
+  fingreso,
+  sintomas 
+}
+ //console.log (objetoPacientes);
+ setPacientes([...pacientes,objetoPacientes])
+
+ //Liempieza de hooks - useState de cada uno
+ setNombre('')
+setPropietario('')
+setEmail('')
+setFingreso('')
+setSintomas('')
+ 
+
+  }
 
   return (
   <div className="md:w-1/2 lg:w-2/5 mx-5">
@@ -39,14 +57,12 @@ const Formulario = () => {
     </p>
 
     <form className="bg-white shadow-md rounded-lg py-10 px-5 mb-10" onSubmit={handleSubmit}>
-      {error && (
-      <div className="bg-red-800 text-white 
-      p-3 uppercase text-center font-bold 
-      rounded-md">
+      {error && <Error>
         <p>
-          Todos los campos son Obligatorios!
+          Todos los campos son Obligatorios¡
         </p>
-      </div>)
+        
+      </Error>
       }
       <div className="mb-5">
         <label htmlFor="mascota" className="block text-gray-700 
