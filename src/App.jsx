@@ -1,8 +1,8 @@
 
 /*importar modulos*/
-import Formulario from "./components/Formulario"
+import Formulario from "./components/Formularios"
 import Header from "./components/Header"
-import ListadoPaciente from "./components/ListadoPaciente"
+import ListadoPaciente from "./components/ListadoPacientes"
 import {useState} from "react"
 
 /*Funcion creadora de la aplicación */ 
