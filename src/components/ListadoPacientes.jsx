@@ -1,7 +1,13 @@
 import Pacientes from "./Pacientes"
-function ListadoPacientes( {pacientes} ) {
+function ListadoPacientes( {pacientes,setPaciente} ) {
+  //formulas para id unico
+  //Date.now().toString(36)
+  //Math.random().toString(36).substr(2)
   return (
     <div className="md:w-1/2 lg:w-3/5 md:h-screen overflow-y-scroll">
+      Pacientes && Pacientes.length ?
+      <>
+
       <h2 className="font-black text-3x1 text-center">Listado Pacientes</h2>
      <p className="text-xl mt-5 mb-10 text-center">
        Administra Tus {' '}
@@ -26,12 +32,28 @@ function ListadoPacientes( {pacientes} ) {
           SINTOMAS:{'  '} <span className="font-normal normal-case">Lorem 
           ipsum dolor sit, amet consectetur adipisicing elit. Voluptatibus, quam dolor ad atque minus ab omnis nihil odit consectetur. Blanditiis placeat quia assumenda voluptates, amet exercitationem reiciendis! Inventore libero voluptatibus, alias corporis praesentium, rem facilis, ad optio nulla quae molestias!</span>
           </p>
-          {pacientes.map((indice)=>
+          {pacientes.map( indice=>
            <Pacientes 
+             key =  {indice.id}
              indice = {indice}
+             setPaciente = {setPaciente}
            />
           )}
-         
+          </>:
+          <>
+        <h2 className="font-black text-3x1 text-center">no hay 
+        pacientes</h2>
+     <p className="text-xl mt-5 mb-10 text-center">
+       Comienza Agregando pacientes  {' '}
+       <span className="text-indigo-600 font-bold">y aparecerán en este espacio!</span>
+     </p>
+      </>
+
+
+      
+    
+
+
           
        </div>
 
