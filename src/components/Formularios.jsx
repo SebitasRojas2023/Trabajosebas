@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Error from "./Error";
 
-const Formulario = ({pacientes, setPacientes, paciente}) => {
+const Formulario = ({pacientes, setPacientes, paciente, setPaciente}) => {
   const [nombre, setNombre] = useState('');
   const [propietario, setPropietario] = useState('');
   const [email, setEmail] = useState('');
@@ -21,7 +21,13 @@ const Formulario = ({pacientes, setPacientes, paciente}) => {
 
   //Revisión del cargue de datos en el form
   useEffect(()=>{
-    console.log(paciente);
+    if(Object.keys(paciente).length > 0){
+      setNombre(paciente.nombre)
+      setEmail(paciente.email)
+      setPropietario(paciente.propietario)
+      setFingreso(paciente.fingreso)
+      setSintomas(paciente.sintomas)
+    }
   }, [paciente])
   
 
@@ -44,13 +50,34 @@ const Formulario = ({pacientes, setPacientes, paciente}) => {
     propietario, 
     email, 
     fingreso, 
-    sintomas,
-    id: generarID()
+    sintomas
+    
+  }
+
+  //Proceso de actualización
+  if(paciente.id){
+    //console.log('Editando')
+    objetoPaciente.id = paciente.id
+    //console.log(objetoPaciente)
+    //console.log(paciente)
+    const pacienteActualizado = pacientes.map(
+      pacienteState =>pacienteState.id === paciente.id ?
+      objetoPaciente: pacienteState
+    )
+
+    setPacientes(pacienteActualizado)
+    setPaciente({})
+
+  }else{
+    //console.log('Agregando mascota')
+    objetoPaciente.id = generarID();
+    setPacientes([...pacientes, objetoPaciente])
+    //console.log(objetoPaciente)
   }
 
   //console.log(objetoPaciente);
 
-  setPacientes([...pacientes, objetoPaciente])
+  
 
   //Limpieza de hooks - useState de cada uno
   setNombre('')
@@ -139,7 +166,7 @@ const Formulario = ({pacientes, setPacientes, paciente}) => {
          />
       </div>
 
-      <input type="submit" value="Agregar Mascota" 
+      <input type="submit" value={paciente.id ? "Editar Mascota":"Agregar Mascota"}
       className="bg-indigo-600 w-full 
       p-3 text-white uppercase font-bold
        hover:bg-indigo-800 cursor-pointer transition-colors" />
